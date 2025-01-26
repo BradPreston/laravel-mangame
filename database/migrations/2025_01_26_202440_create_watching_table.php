@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('show_id')->default(0);
-            $table->integer('watching')->default(0);
+            $table->integer('current_episode')->default(0);
             $table->timestamps();
         });
     }
