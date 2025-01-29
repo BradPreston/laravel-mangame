@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Welcome');
 });
+
+Route::get('/user', [UserController::class, 'index']);
+Route::post('/user', [UserController::class, 'store']);
