@@ -7,21 +7,20 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function store(Request $request) {
-        // validate the request
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-        // if request is invalid, return 400 response
-        if ($validator->stopOnFirstFailure()->fails()) {
-            $json = json_decode($validator->errors(), true);
-            foreach ($json as $key => $value) {
-                return response()->json(["error" => $value[0]], 400);
-            }
+    public function store(Request $request)
+    {
+        $rules = [
+            "name" => "required",
+            "password" => "required",
+            "email" => "required"
+        ];
+        $validations = [
+            "required" => "the :attribute field is required"
+        ];
+        $validator = Validator::make($request->all(), $rules, $validations);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
         }
-        // grab the request data and return it as json
         $input = $request->all();
         return response()->json($input, 200);
     }
