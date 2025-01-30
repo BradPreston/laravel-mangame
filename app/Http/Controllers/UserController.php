@@ -26,7 +26,6 @@ class UserController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $input = $request->all();
-        return response()->json($input, 200);
+        return redirect()->back();
     }
 }
