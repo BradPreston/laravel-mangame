@@ -1,5 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
 
 const form = useForm({
     name: null,
@@ -9,6 +10,7 @@ const form = useForm({
 </script>
 
 <template>
+    <Head title="Create New User - Mangame" />
     <h1>Create User page</h1>
     <form @submit.prevent="form.post('/user')">
         <input
