@@ -7,35 +7,71 @@ const form = useForm({
     email: null,
     password: null,
 });
+
+function handleSubmit() {
+    form.post("/user", {
+        onSuccess: () => form.reset(),
+    });
+}
 </script>
 
 <template>
-    <div class="prose">
+    <div class="prose container mx-auto">
         <Head title="Create New User - Mangame" />
-        <h1>Create User page</h1>
-        <form @submit.prevent="form.post('/user')">
+        <h1 class="text-center">Create User page</h1>
+        <form
+            class="flex flex-col mx-auto max-w-xs"
+            @submit.prevent="handleSubmit"
+        >
+            <label
+                for="user[name]"
+                :class="`mb-2 ${form.errors.name && 'text-red-500'}`"
+            >
+                Full Name*
+            </label>
             <input
+                :class="`input input-bordered w-full max-w-xs mb-4 ${
+                    form.errors.name && 'border-red-500'
+                }`"
+                id="user[name]"
                 type="text"
                 name="name"
                 placeholder="John Doe"
                 v-model="form.name"
             />
-            <div v-if="form.errors.name">{{ form.errors.name }}</div>
+            <label
+                for="user[email]"
+                :class="`mb-2 ${form.errors.email && 'text-red-500'}`"
+            >
+                Email*
+            </label>
             <input
+                :class="`input input-bordered w-full max-w-xs mb-4 ${
+                    form.errors.email && 'border-red-500'
+                }`"
                 type="email"
                 name="email"
+                id="user[email]"
                 placeholder="john.doe@email.com"
                 v-model="form.email"
             />
-            <div v-if="form.errors.email">{{ form.errors.email }}</div>
+            <label
+                for="user[password]"
+                :class="`mb-2 ${form.errors.password && 'text-red-500'}`"
+            >
+                Password*
+            </label>
             <input
+                :class="`input input-bordered w-full max-w-xs mb-4 ${
+                    form.errors.password && 'border-red-500'
+                }`"
                 type="password"
                 name="password"
+                id="user[password]"
                 placeholder="password"
                 v-model="form.password"
             />
-            <div v-if="form.errors.password">{{ form.errors.password }}</div>
-            <button>Submit</button>
+            <button class="btn btn-primary max-w-xs">Submit</button>
         </form>
     </div>
 </template>
