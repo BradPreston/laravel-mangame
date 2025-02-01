@@ -4,7 +4,8 @@ import { Head } from "@inertiajs/vue3";
 import { ref } from "vue";
 
 const form = useForm({
-    name: null,
+    first_name: null,
+    last_name: null,
     email: null,
     password: null,
 });
@@ -33,20 +34,38 @@ function handleSubmit() {
             @submit.prevent="handleSubmit"
         >
             <label
-                for="user[name]"
-                :class="`mb-2 ${form.errors.name && 'text-red-500'}`"
+                for="user[first_name]"
+                :class="`mb-2 ${form.errors.first_name && 'text-red-500'}`"
             >
-                Full Name*
+                First Name*
             </label>
             <input
                 :class="`input input-bordered w-full max-w-sm mb-4 ${
-                    form.errors.name && 'border-red-500'
+                    form.errors.first_name && 'border-red-500'
                 }`"
-                id="user[name]"
+                id="user[first_name]"
                 type="text"
-                name="name"
-                placeholder="John Doe"
-                v-model="form.name"
+                name="first_name"
+                placeholder="John"
+                v-model="form.first_name"
+                required
+            />
+            <label
+                for="user[last_name]"
+                :class="`mb-2 ${form.errors.last_name && 'text-red-500'}`"
+            >
+                Last Name*
+            </label>
+            <input
+                :class="`input input-bordered w-full max-w-sm mb-4 ${
+                    form.errors.last_name && 'border-red-500'
+                }`"
+                id="user[last_name]"
+                type="text"
+                name="last_name"
+                placeholder="Doe"
+                v-model="form.last_name"
+                required
             />
             <label
                 for="user[email]"
@@ -63,15 +82,20 @@ function handleSubmit() {
                 id="user[email]"
                 placeholder="john.doe@email.com"
                 v-model="form.email"
+                required
             />
+            <p class="-mt-2 text-red-500" v-if="form.errors.email">
+                {{ form.errors.email }}
+            </p>
             <label
                 for="user[password]"
                 :class="`mb-2 ${form.errors.password && 'text-red-500'}`"
             >
                 Password*
             </label>
+
             <input
-                :class="`input input-bordered w-full max-w-sm mb-4 ${
+                :class="`input input-bordered w-full max-w-sm mb-2 ${
                     form.errors.password && 'border-red-500'
                 }`"
                 type="password"
@@ -79,7 +103,14 @@ function handleSubmit() {
                 id="user[password]"
                 placeholder="password"
                 v-model="form.password"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Password must contain at least one number, one uppercase letter, one lowercase letter, and at least 8 characters"
+                required
             />
+            <small class="mb-4"
+                >Password must contain at least one number, one uppercase
+                letter, one lowercase letter, and at least 8 characters</small
+            >
             <button class="btn btn-primary max-w-sm">Submit</button>
         </form>
         <div
