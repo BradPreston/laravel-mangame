@@ -13,7 +13,7 @@ const form = useForm({
 const totalErrors = ref(0);
 
 function handleSubmit() {
-    form.post("/user", {
+    form.post("/account/register", {
         onError: () => {
             totalErrors.value = Object.keys(form.errors).length;
         },

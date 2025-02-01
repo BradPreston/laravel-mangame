@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function create()
     {
-        return Inertia::render('User/Create');
+        return Inertia::render('Account/Register');
     }
     public function store(Request $request)
     {

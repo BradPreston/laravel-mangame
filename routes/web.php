@@ -8,5 +8,5 @@ Route::get('/', function () {
     return Inertia::render('Welcome');
 });
 
-Route::get('/user/new', [UserController::class, 'create']);
-Route::post('/user', [UserController::class, 'store']);
+Route::get('/account/register', [UserController::class, 'create']);
+Route::post('/account/register', [UserController::class, 'store']);
