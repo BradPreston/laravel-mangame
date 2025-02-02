@@ -1,14 +1,19 @@
 <script setup>
-defineProps({
-'isLoggedIn': Boolean
-});
+import { Head, usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
+
+const page = usePage();
+
+const user = computed(() => page.props.auth.user);
 </script>
 
 <template>
-    <h1>hello</h1>
-    <p>Are you logged in?</p>
-    <p>{{ isLoggedIn }}</p>
-    <form action="/logout" method="GET" v-if="isLoggedIn">
-        <button class="btn btn-primary">Log out</button>
-    </form>
+    <Head title="Account - Mangame" />
+    <ul class="list-none">
+        <li class="capitalize">
+            <strong>Name: </strong>{{ user.first_name }}
+            {{ user.last_name }}
+        </li>
+        <li><strong>Email: </strong>{{ user.email }}</li>
+    </ul>
 </template>
