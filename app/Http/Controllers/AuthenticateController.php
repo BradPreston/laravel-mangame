@@ -22,7 +22,7 @@ class AuthenticateController extends Controller
         }
 
         return back()->withErrors([
-            'errors' => 'The provided credentials do not match our records'
+            'message' => 'The provided credentials do not match our records'
         ]);
     }
 

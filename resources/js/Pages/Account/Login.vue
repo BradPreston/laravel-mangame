@@ -26,16 +26,12 @@ function handleSubmit() {
 <template>
     <Head title="Login - Mangame" />
     <form class="flex flex-col mx-auto max-w-sm" @submit.prevent="handleSubmit">
-        <label
-            for="user[email]"
-            :class="`mb-2 ${form.errors.email && 'text-red-500'}`"
-        >
-            Email*
-        </label>
+        <p v-if="form.errors" class="text-red-500 mb-2">
+            {{ form.errors.message }}
+        </p>
+        <label for="user[email]" class="mb-2"> Email* </label>
         <input
-            :class="`input input-bordered w-full max-w-sm mb-4 ${
-                form.errors.email && 'border-red-500'
-            }`"
+            class="input input-bordered w-full max-w-sm mb-4"
             id="user[email]"
             type="email"
             name="email"
@@ -43,16 +39,9 @@ function handleSubmit() {
             v-model="form.email"
             required
         />
-        <label
-            for="user[password]"
-            :class="`mb-2 ${form.errors.password && 'text-red-500'}`"
-        >
-            Password*
-        </label>
+        <label for="user[password]" class="mb-2"> Password* </label>
         <input
-            :class="`input input-bordered w-full max-w-sm mb-4 ${
-                form.errors.password && 'border-red-500'
-            }`"
+            class="input input-bordered w-full max-w-sm mb-4"
             id="user[password]"
             type="password"
             name="password"
