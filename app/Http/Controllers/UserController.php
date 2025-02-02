@@ -10,9 +10,9 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    public function details() 
+    public function index()
     {
-        return Inertia::render('Account/Details', [
+        return Inertia::render('Account/Index', [
             'isLoggedIn' => Auth::check()
         ]);
     }

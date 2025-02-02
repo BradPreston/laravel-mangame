@@ -8,6 +8,6 @@ Route::get('/', function () {
     return Inertia::render('Welcome');
 });
 
-Route::get('/account', [UserController::class, 'details']);
+Route::get('/account', [UserController::class, 'index']);
 Route::get('/account/register', [UserController::class, 'create']);
 Route::post('/account/register', [UserController::class, 'store']);
