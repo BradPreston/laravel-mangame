@@ -8,21 +8,38 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use App\Http\Controllers\AuthenticateController as Login;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Response;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(): RedirectResponse | Response
     {
+        // Redirect to the login page if user is not logged in.
+        // Prevents the user from accessing the account page unless logged in.
+        if (!Auth::check()) {
+            return redirect('/account/login');
+        }
         return Inertia::render('Account/Index', [
             'isLoggedIn' => Auth::check()
         ]);
     }
-    public function login()
+    public function login(): RedirectResponse | Response
     {
+        // Redirect to the account page if user is logged in.
+        // Prevents the user from accessing the login page if already logged in.
+        if (Auth::check()) {
+            return redirect('/account');
+        }
         return Inertia::render('Account/Login');
     }
-    public function create()
+    public function create(): RedirectResponse | Response
     {
+        // Redirect to the account page if user is logged in.
+        // Prevents the user from accessing the register account page if already logged in.
+        if (Auth::check()) {
+            return redirect('/account');
+        }
         return Inertia::render('Account/Register');
     }
     public function store(Request $request)
