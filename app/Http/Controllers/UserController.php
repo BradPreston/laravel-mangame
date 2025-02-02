@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
+use App\Http\Controllers\AuthenticateController as Login;
 
 class UserController extends Controller
 {
@@ -15,6 +16,10 @@ class UserController extends Controller
         return Inertia::render('Account/Index', [
             'isLoggedIn' => Auth::check()
         ]);
+    }
+    public function login()
+    {
+        return Inertia::render('Account/Login');
     }
     public function create()
     {
@@ -42,6 +47,7 @@ class UserController extends Controller
             "password" => $request->input('password'),
         ]);
 
-        return redirect()->back();
+        $login = new Login;
+        $login->authenticate($request);
     }
 }
