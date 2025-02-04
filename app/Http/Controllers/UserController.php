@@ -20,9 +20,7 @@ class UserController extends Controller
         if (!Auth::check()) {
             return redirect('/account/login');
         }
-        return Inertia::render('Account/Index', [
-            'isLoggedIn' => Auth::check()
-        ]);
+        return Inertia::render('Account/Index');
     }
     public function login(): RedirectResponse | Response
     {
