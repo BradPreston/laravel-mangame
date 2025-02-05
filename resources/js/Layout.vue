@@ -45,8 +45,6 @@ const loggedOutUserLinks = [
         <div v-else>
             <Header :navLinks="navLinks" :userLinks="loggedOutUserLinks" />
         </div>
-        <div class="prose container mx-auto">
-            <slot />
-        </div>
+        <slot />
     </main>
 </template>
