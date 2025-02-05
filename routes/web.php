@@ -1,13 +1,12 @@
 <?php
 
+use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthenticateController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/account', [UserController::class, 'index']);
 Route::get('/account/register', [UserController::class, 'create']);
