@@ -1,27 +1,33 @@
 <script setup>
-defineProps({
+import { reactive } from "vue";
+
+const props = defineProps({
     title: String,
-    body: String,
-    linkTitle: String,
-    linkHref: String,
+    body: String | null,
+    linkTitle: String | null,
+    linkHref: String | null,
+    background: String,
+});
+
+const styledObject = reactive({
+    backgroundImage: `url(${props.background})`,
 });
 </script>
 
 <template>
-    <div
-        class="hero min-h-96"
-        style="
-            background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);
-        "
-    >
-        <div class="hero-overlay bg-opacity-60"></div>
+    <div class="hero min-h-96 max-w-[1600px] mx-auto" :style="styledObject">
+        <div class="hero-overlay bg-opacity-80"></div>
         <div class="hero-content text-neutral-content text-center">
-            <div class="max-w-md">
-                <h1 class="mb-5 text-5xl font-bold">{{ title }}</h1>
-                <p class="mb-5">
+            <div class="px-10">
+                <h1 class="mb-5 text-5xl font-bold drop-shadow">
+                    {{ title }}
+                </h1>
+                <p v-if="body" class="mb-5">
                     {{ body }}
                 </p>
-                <a :href="linkHref" class="btn btn-primary">{{ linkTitle }}</a>
+                <a v-if="linkTitle" :href="linkHref" class="btn btn-primary">{{
+                    linkTitle
+                }}</a>
             </div>
         </div>
     </div>
