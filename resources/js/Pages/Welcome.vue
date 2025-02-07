@@ -25,7 +25,11 @@ console.log(anime.value);
             <h2>Trending Anime</h2>
             <ul class="list-none grid grid-cols-3 gap-4 p-0">
                 <li v-for="a of anime.data">
-                    <img class="my-0" :src="a.attributes.posterImage.small" />
+                    <img
+                        loading="lazy"
+                        class="my-0"
+                        :src="a.attributes.posterImage.small"
+                    />
                     <h3 class="mt-0">{{ a.attributes.canonicalTitle }}</h3>
                 </li>
             </ul>
@@ -36,7 +40,11 @@ console.log(anime.value);
             <h2>Trending Manga</h2>
             <ul class="list-none grid grid-cols-3 gap-4 p-0">
                 <li v-for="m of manga.data">
-                    <img class="my-0" :src="m.attributes.posterImage.small" />
+                    <img
+                        loading="lazy"
+                        class="my-0"
+                        :src="m.attributes.posterImage.small"
+                    />
                     <h3 class="mt-0">{{ m.attributes.canonicalTitle }}</h3>
                 </li>
             </ul>
