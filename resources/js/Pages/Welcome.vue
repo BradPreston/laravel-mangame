@@ -6,7 +6,6 @@ import Container from "../Components/Layout/Container.vue";
 
 const page = usePage();
 
-const user = computed(() => page.props.auth.user);
 const anime = computed(() => page.props.trendingAnime);
 const manga = computed(() => page.props.trendingManga);
 console.log(anime.value);
@@ -19,18 +18,21 @@ console.log(anime.value);
         body="Use Manganime to track your Anime and Manga progress"
         linkTitle="View catalog"
         linkHref="/"
+        background="https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp"
     />
     <Container>
         <section class="mt-16 flex flex-col justify-center">
             <h2>Trending Anime</h2>
             <ul class="list-none grid grid-cols-3 gap-4 p-0">
                 <li v-for="a of anime.data">
-                    <img
-                        loading="lazy"
-                        class="my-0"
-                        :src="a.attributes.posterImage.small"
-                    />
-                    <h3 class="mt-0">{{ a.attributes.canonicalTitle }}</h3>
+                    <a :href="a.links.self">
+                        <img
+                            loading="lazy"
+                            class="my-0"
+                            :src="a.attributes.posterImage.small"
+                        />
+                        <h3 class="mt-0">{{ a.attributes.canonicalTitle }}</h3>
+                    </a>
                 </li>
             </ul>
             <a href="/" class="btn btn-primary mx-auto">See More Anime</a>
