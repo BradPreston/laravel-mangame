@@ -20,7 +20,7 @@ console.log(rating);
     <Head title="Anime" />
     <Hero
         :title="details.canonicalTitle"
-        :background="details.coverImage.large"
+        :background="details.coverImage?.large"
     />
     <Container>
         <div class="flex gap-10 mt-10">
