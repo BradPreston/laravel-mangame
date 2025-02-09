@@ -24,13 +24,13 @@ console.log(rating);
     />
     <Container>
         <div class="flex gap-10 mt-10">
-            <div class="w-3/4 min-h-[10000px]">
+            <div class="w-2/3 min-h-[10000px]">
                 <section>
                     <h2 class="mt-0">Description</h2>
                     <p>{{ details.description }}</p>
                 </section>
             </div>
-            <aside class="w-1/4 capitalize sticky top-0 h-fit">
+            <aside class="w-1/3 capitalize sticky top-0 h-fit">
                 <p>
                     <strong>Show Rating</strong>:
                     <i
@@ -51,6 +51,7 @@ console.log(rating);
                     ></i>
                 </p>
                 <p><strong>Age Rating</strong>: {{ details.ageRating }}</p>
+                <p><strong>Rating Guide</strong>: {{ details.ageRatingGuide }}</p>
                 <p>
                     <strong>Adult Content</strong>:
                     {{ details.nsfw ? "Yes" : "No" }}
