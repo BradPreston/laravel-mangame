@@ -10,8 +10,8 @@ const anime = computed(() => page.props.anime);
 const details = anime.value.data.attributes;
 const rating = Number(details.averageRating) / 20;
 const fullStars = Math.floor(rating);
-const noStars = 5 - fullStars;
 const halfStar = rating % 1 > 0.5;
+const noStars = halfStar ? 4 - fullStars : 5 - fullStars;
 console.log(details);
 console.log(rating);
 </script>
@@ -38,17 +38,15 @@ console.log(rating);
                         v-for="_ of fullStars"
                     ></i>
                     <i
+                        class="fa-solid fa-star-half-stroke text-primary"
+                        v-if="halfStar"
+                    ></i>
+                    <i
                         class="fa-regular fa-star text-primary"
                         v-for="_ of noStars"
                     ></i>
-                    <i
-                        class="fa-solid fa-star-half-stroke text-primary"
-                        v-if="halfStar"
-                    ></i>
-                    <i
-                        class="fa-solid fa-star-half-stroke text-primary"
-                        v-if="halfStar"
-                    ></i>
+
+                    <span class="ml-1">({{rating.toFixed(2)}})</span>
                 </p>
                 <p><strong>Age Rating</strong>: {{ details.ageRating }}</p>
                 <p><strong>Rating Guide</strong>: {{ details.ageRatingGuide }}</p>
