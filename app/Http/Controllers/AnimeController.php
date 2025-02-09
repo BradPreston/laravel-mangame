@@ -13,10 +13,10 @@ class AnimeController extends Controller
         return Http::get('https://kitsu.io/api/edge/trending/anime?limit=12')->json();
     }
 
-    public function getAnimeById(Request $request, string $id)
+    public function getAnimeById(string $id)
     {
         $response = Http::get("https://kitsu.io/api/edge/anime/{$id}")->json();
-        return Inertia::render('Anime/Index', [
+        return Inertia::render('Anime/ID', [
             'anime' => $response
         ]);
     }
