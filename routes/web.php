@@ -15,4 +15,5 @@ Route::post('/account/register', [UserController::class, 'store']);
 Route::get('/logout', [AuthenticateController::class, 'logout']);
 Route::post('/login', [AuthenticateController::class, 'authenticate']);
 
+Route::get('/anime', [AnimeController::class, 'getAllAnime']);
 Route::get('/anime/{id}', [AnimeController::class, 'getAnimeById']);

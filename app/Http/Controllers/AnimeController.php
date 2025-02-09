@@ -20,4 +20,34 @@ class AnimeController extends Controller
             'anime' => $response
         ]);
     }
+
+    public function getAllAnime(Request $request)
+    {
+        $limit = $request->query('limit');
+        if (!isset($limit)) {
+            $limit = 9;
+        }
+        $page = $request->query('page');
+        if (!isset($page)) {
+            $page = 1;
+        }
+        $offset = ($page - 1) * $limit;
+        if ($limit && $page) {
+            $query = "?page[limit]={$limit}&page[offset]={$offset}}";
+        } else if ($page) {
+            $query = "?page[limit]=9&page[offset]={$offset}}";
+        } else if ($limit) {
+            $query = "?page[limit]={$limit}";
+        }
+        $response = Http::get("https://kitsu.io/api/edge/anime?page[limit]=9")->json();
+        if (isset($query)) {
+            $response = Http::get("https://kitsu.io/api/edge/anime{$query}")->json();
+        }
+        return Inertia::render('Anime/Index', [
+            'anime' => $response,
+            'limit' => (int)$limit,
+            'page' => (int)$page,
+            'offset' => (int)$offset
+        ]);
+    }
 }
