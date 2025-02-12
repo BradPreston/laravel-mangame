@@ -57,7 +57,14 @@ function createPageList() {
             @click="handlePagination"
             :class="`join-item btn ${currentPage <= 1 ? 'btn-disabled' : ''}`"
         >
-            «
+            <i class="fa-solid fa-angles-left"></i>
+        </button>
+        <button
+            :data-target-page="currentPage - 1"
+            @click="handlePagination"
+            :class="`join-item btn ${currentPage <= 1 ? 'btn-disabled' : ''}`"
+        >
+            <i class="fa-solid fa-angle-left"></i>
         </button>
         <button
             v-for="page of createPageList()"
@@ -70,6 +77,17 @@ function createPageList() {
             {{ page }}
         </button>
         <button
+            :data-target-page="currentPage + 1"
+            @click="handlePagination"
+            :class="`join-item btn ${
+                currentPage === Math.ceil(totalCount / limit)
+                    ? 'btn-disabled'
+                    : ''
+            }`"
+        >
+            <i class="fa-solid fa-angle-right"></i>
+        </button>
+        <button
             @click="handlePagination"
             :data-target-page="`${Math.ceil(totalCount / limit)}`"
             :class="`join-item btn ${
@@ -78,7 +96,7 @@ function createPageList() {
                     : ''
             }`"
         >
-            »
+            <i class="fa-solid fa-angles-right"></i>
         </button>
     </div>
 </template>
