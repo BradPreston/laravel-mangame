@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import SearchBar from "./SearchBar.vue";
 defineProps(["navLinks", "userLinks"]);
 </script>
 
@@ -42,6 +43,7 @@ defineProps(["navLinks", "userLinks"]);
             </ul>
         </div>
         <div class="navbar-end">
+            <SearchBar />
             <ul class="menu menu-horizontal px-1 gap-2">
                 <li v-for="link of userLinks" :key="link.href">
                     <a :href="link.href" class="btn">{{ link.name }}</a>
