@@ -21,13 +21,11 @@ onMounted(() => {
             form.reset();
             return;
         }
-        axios
-            .get(
-                `https://kitsu.io/api/edge/anime?page[limit]=5&filter[text]=${query}`
-            )
-            .then(({ data: results }) => {
-                console.log(results.data);
-                quickSearchResults.value = results.data;
+
+        fetch(`https://kitsu.io/api/edge/anime?filter[text]=${query}`)
+            .then((res) => res.json())
+            .then(({ data }) => {
+                quickSearchResults.value = data;
             })
             .catch((err) => console.error(err));
     }
@@ -81,7 +79,10 @@ function closeQuickResults() {
         >
             <LoadingSpinner />
         </div>
-        <div class="w-96 absolute z-20 bg-white px-4" v-if="quickSearchResults">
+        <div
+            class="w-96 overflow-y-auto max-h-72 absolute z-20 bg-white px-4"
+            v-if="quickSearchResults"
+        >
             <article v-for="result of quickSearchResults" class="py-4">
                 <p>{{ result.attributes.canonicalTitle }}</p>
             </article>
