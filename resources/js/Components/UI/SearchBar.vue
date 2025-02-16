@@ -79,11 +79,17 @@ function closeQuickResults() {
             <LoadingSpinner />
         </div>
         <div
-            class="w-96 overflow-y-auto max-h-72 absolute z-20 bg-white px-4"
+            class="w-96 overflow-y-auto max-h-72 absolute z-20 bg-white"
             v-if="quickSearchResults"
         >
-            <article v-for="result of quickSearchResults" class="py-4">
-                <p>{{ result.attributes.canonicalTitle }}</p>
+            <article v-for="result of quickSearchResults" class="py-4 px-4 hover:bg-primary hover:bg-opacity-20 transition">
+                <a :href="`/anime/${result.id}`" class="flex">
+                    <img class="h-20" :src="result.attributes.posterImage.tiny">
+                    <div class="ml-2">
+                        <p><strong>{{ result.attributes.canonicalTitle }}</strong></p>
+                        <p>{{ new Date(result.attributes.startDate).getFullYear() }}</p>
+                    </div>
+                </a>
             </article>
         </div>
     </div>
