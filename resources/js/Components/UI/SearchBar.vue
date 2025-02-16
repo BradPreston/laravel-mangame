@@ -2,7 +2,6 @@
 import { useForm } from "@inertiajs/vue3";
 import { debounce } from "../../utils/debounce";
 import { useTemplateRef, onMounted, ref } from "vue";
-import axios from "axios";
 import LoadingSpinner from "./LoadingSpinner.vue";
 
 const input = useTemplateRef("searchInput");
