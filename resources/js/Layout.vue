@@ -1,5 +1,5 @@
 <script setup>
-import { Link, usePage } from "@inertiajs/vue3";
+import { usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 import Header from "./Components/UI/Header.vue";
 
@@ -12,6 +12,10 @@ const navLinks = [
         href: "/",
         name: "Home",
     },
+    {
+        href: '/anime',
+        name: "Anime"
+    }
 ];
 
 const loggedInUserLinks = [
